@@ -1,26 +1,35 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { ThemeProvider } from 'styled-components';
+import { ThemeType } from './interface';
+import Global from './styles/global';
+import Header from './components/header/Header';
+import RealEstate from './components/body/realEstate/RealEstate';
+import Discover from './components/body/discover/Discover';
 
-function App() {
+const theme: ThemeType = {
+  screen: {
+    sm: '640px',
+    md: '768px',
+    lg: '1024px',
+    xl: '1280px',
+    '2xl': '1536px',
+  },
+  colors: {
+    defaultBackground: '#F5F5F5',
+    primaryText: '#69B99D',
+    secondaryText: '#F8F9FE',
+  },
+};
+
+const App: React.FC = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <ThemeProvider theme={theme}>
+      <Global />
+      <Header/>
+      <RealEstate/>
+      <Discover theme={theme} />
+    </ThemeProvider>
   );
-}
+};
 
 export default App;
